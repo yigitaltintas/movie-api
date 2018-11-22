@@ -19,4 +19,16 @@ router.post('/', (req, res, next) => {
 
 });
 
+/** all movies */
+router.get('/', (req, res, next) => {
+  const promise = Movie.find({ });
+  promise.then((data) => {
+    res.json(data);
+  }).catch((err) => {
+    res.json(err);
+  });
+});
+
+/***/
+
 module.exports = router;
