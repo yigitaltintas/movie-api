@@ -1,2 +1,4 @@
 # movie-api
-Movie API
+Movie API 
+
+end pointler eklenecek.
