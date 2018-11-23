@@ -41,7 +41,7 @@ router.get('/top10', (req, res, next) => {
 
 /** Between two date  movies */
 router.get('/between/:start_year/:end_year' , (req, res, next) => {
-    const { start_year, end_year} = req.params;
+    const { start_year, end_year } = req.params;
     const promise = Movie.find({
         year : {
             "$gte" : parseInt(start_year),
