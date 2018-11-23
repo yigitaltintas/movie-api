@@ -11,9 +11,9 @@ router.post('/', (req, res, next) => {
   const movie = new Movie(req.body);
   const promise = movie.save();
 
-  promise.then( (data) => {
-    res.json( {status : 1} )
-  }).catch((err) => {
+  promise.then( data => {
+    res.json(data);
+  }).catch(err => {
     res.json(err);
   });
 
@@ -22,13 +22,55 @@ router.post('/', (req, res, next) => {
 /** all movies */
 router.get('/', (req, res, next) => {
   const promise = Movie.find({ });
-  promise.then((data) => {
+  promise.then( data => {
     res.json(data);
-  }).catch((err) => {
+  }).catch( err => {
     res.json(err);
   });
 });
 
-/***/
+/** Get a movie */
+router.get('/:movie_id', (req, res, next) => {
+  const promise = Movie.findById(req.params.movie_id);
+  promise.then( movie => {
+    if(!movie)
+      return next({ message: 'The movie was not found' , code : 1});
+    res.json(movie);
+  }).catch(err => {
+    res.json(err);
+  });
+});
+
+
+/** Update movie */
+
+router.put('/:movie_id', (req, res, next) => {
+  const promise = Movie.findByIdAndUpdate(
+      req.params.movie_id,
+      req.body,
+      {
+        new : true
+      });
+  promise.then( movie => {
+    if(!movie)
+      return next({message : 'The movie was not found' , code : 1});
+    res.json(movie);
+  }).catch(err => {
+    res.json(err);
+  });
+});
+
+/** Delete Movie */
+router.delete('/:movie_id', (req, res, next) => {
+    const promise = Movie.findByIdAndRemove(req.params.movie_id);
+    promise.then( movie => {
+        if(!movie)
+            return next({ message: 'The movie was not found' , code : 1});
+        res.json( { status : 1} );
+    }).catch(err => {
+        res.json(err);
+    });
+});
+
 
 module.exports = router;
