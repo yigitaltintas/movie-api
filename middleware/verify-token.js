@@ -6,16 +6,12 @@ module.exports = (req, res, next) => {
     if(!token)
         return next( {message : 'Token not found'} );
 
-    if(token){
-        jwt.verify(token, req.app.get('api_secret_key'), (err, decoded) => {
-            if(err){
-                return next({message: 'Failed to auth token.'});
-            }else{
-                req.decode = decoded;
-                next();
-            }
-        });
-    }
-
-
+    jwt.verify(token, req.app.get('api_secret_key'), (err, decoded) => {
+        if(err){
+            return next({message: 'Failed to auth token.'});
+        }else{
+            req.decode = decoded;
+            next();
+        }
+    });
 };

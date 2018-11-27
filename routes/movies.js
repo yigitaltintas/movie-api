@@ -75,7 +75,8 @@ router.get('/:movie_id', (req, res, next) => {
   const promise = Movie.findById(req.params.movie_id);
   promise.then( movie => {
     if(!movie)
-      return next({ message: 'The movie was not found' , code : 1});
+        res.status(404).json(movie || {});
+
     res.json(movie);
   }).catch(err => {
     res.json(err);
@@ -112,6 +113,5 @@ router.delete('/:movie_id', (req, res, next) => {
         res.json(err);
     });
 });
-
 
 module.exports = router;
