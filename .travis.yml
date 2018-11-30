@@ -3,6 +3,7 @@ node_js :
   - 11
 before_install:
   - npm install
+  - npm install -g mocha
   - export NODE_ENV=production
 script :
-  - npm test
+  - npm run test
