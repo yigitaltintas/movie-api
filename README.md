@@ -1,5 +1,5 @@
 # movie-api
-[! [Build Status] (https://api.travis-ci.org/yigitaltintas/movie-api.svg?branch=master)](https://api.travis-ci.org/yigitaltintas/movie-api.svg?branch=master)
+[![Build Status](https://travis-ci.org/yigitaltintas/movie-api.png?branch=master)](https://travis-ci.org/yigitaltintas/movie-api)
+
 Movie API 
 
-end pointler eklenecek.
